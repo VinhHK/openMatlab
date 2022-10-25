@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release Notes - PD OpenMatlab</title>
+
+<style>
+li
+{
+  margin-bottom: 5;
+}
+h2
+{
+  margin-block-start: 1.5em;
+  margin-block-end: 0.5em;
+}
+</style>
+</head>
+
+<body>
+<h1>Pure Devices OpenMatlab</h1>
+
+<h2>Version 2021-Aug-03</h2>
+<a href="http://www.pure-devices.com/downloads/research/2021-08-04_0715/Setup_openMatlab.exe">Download installer</a>
+<ul>
+<li>Support <code>Seq.Function_Prepare_Measurement</code> to add a hook for manipulating the pulse program in <code>sequence_Flash</code> (similar to <code>sequence_Spin_Echo</code>).</li>
+<li>Add <code>AQ.SamplingFactor</code> that can be used to acquire the measurement signal with a higher sampling rate than the one appearing in the measured data. This is especially useful to reduce the memory requirements for the imaging functions <code>sequence_Spin_Echo</code> and </code>sequence_Flash</code>. See also the documentation of <code>Seq.AQSlice.SamplingFactor</code> of these functions.</li>
+<li>Support read rephase correction and phase (frequency) correction with EPI acceleration in <code>sequence_Flash</code>.</li>
+<li>Optionally, support a variable number of gradient channels (> 4). This requires to use a "<code>PD.HW</code>" object.</li>
+<li>Fix measurements with off-center in phase direction using <code>sequence_Spin_Echo</code>.</li>
+<li>Support using OpenMatlab in dummy mode on platforms other than Windows.</li>
+<li>Add initial support for simultaneous secondary mixer frequency (for X nucleus) in rf transmissions and acquisitions. This feature is not complete yet. Do not use!</li>
+<li>Avoid non-ASCII characters in .m files. They can't be used compatibly between different versions of Matlab.</li>
+<li>Many more other changes and improvements.</li>
+</ul>
+
+<h2>Version 2021-Jul-09</h2>
+<a href="http://www.pure-devices.com/downloads/research/previous/2021-07-09_0930/Setup_openMatlab.exe">Download installer</a>
+<ul>
+<li>Support measuring T1rho-T2 maps with <code>sequence_RecoveryCPMG</code>.</li>
+<li>Fix error in Larmor frequency correction (<code>Seq.CorrectPhase</code>) with <code>sequence_Flash</code>.</li>
+<li>Some smaller changes and improvements.</li>
+</ul>
+
+<h2>Version 2021-Jun-16</h2>
+<a href="http://www.pure-devices.com/downloads/research/previous/2021-06-16_1400/Setup_openMatlab.exe" download>Download link</a>
+<ul>
+<li>Determine frequency before creating the pulse program with <code>sequence_RecoveryCPMG</code>.</li>
+<li>Some smaller changes and improvements.</li>
+</ul>
+
+<h2>Version 2021-Mar-22</h2>
+<a href="http://www.pure-devices.com/downloads/research/previous/2021-03-22_1025/Setup_openMatlab.exe" download>Download link</a>
+<ul>
+<li>Improve support of BSSFP measurements with <code>sequence_Spin_Echo</code>.</li>
+<li>Optionally, skip some k-lines in <code>sequence_Spin_Echo</code> by selecting a subset in <code>Seq.AQSlice.kLineOrder</code>.</li>
+<li>Optionally, use multiple synchronized MMRT devices.</li>
+<li>Add support for external PD-DDS.</li>
+<li>Many more minor changes.</li>
+</ul>
+
+<h2>Version 2020-Dec-03</h2>
+<!--a href="http://www.pure-devices.com/downloads/research/previous/2020-12-03_1100/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Fix regression with "<code>Seq.CorrectSliceRephase</code>" and "<code>Seq.CorrectReadRephase</code>" in "<code>sequence_Flash</code>" in last version.</li>
+<li>Automatically check for OpenMatlab updates only on initial start up per Matlab session.</li>
+</ul>
+
+<h2>Version 2020-Oct-30</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-10-30_1000/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Optionally, acquire data in EPI segments with "<code>sequence_Flash</code>". See e.g. script "<code>Example_Flash_2D_EPI</code>".</li>
+<li>Optionally, acquire multiple images in a gradient echo train with "<code>sequence_Flash</code>". See e.g. script "<code>Example_Flash_T2star</code>".</li>
+<li>Harmonize and document B0 map measurement and correction of corresponding read error with "<code>sequence_Spin_Echo</code>" and "<code>sequence_Flash</code>".</li>
+<li>Support controlling multiple MRT devices from one OpenMatlab instance.</li>
+<li>Improve handling of calibrated rf amplifier output. The values in <code>HW.TX.AmpMax</code>, <code>HW.TX.AmpMaxChannel</code>, <code>HW.TX.AmpDef</code>, <code>HW.TX.AmpDefChannel</code>, and <code>HW.TX.MaxdBmChannel</code> are now the maximum values that are <b>allowed</b> to be used (taking the limiting values in <code>HW.TX.Max</code> into account).</li>
+<li>"<code>Find_Shim</code>" now checks the final amplitude by default and discards the shimming result if it is very low.</li>
+<li>Add new functions "<code>get_TX_Amplitude</code>" and "<code>get_RX_Amplitude</code>" that calculate the TX or RX amplitude at specified points in the amplifier chain.</li>
+<li>Add new demonstration script "<code>Demo_NoiseFigure</code>".</li>
+<li>Other stability and performance improvements.</li>
+</ul>
+
+<h2>Version 2020-Aug-19</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-10-12_1125/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Add option to export surfaces from sliceomatic to .stl files (e.g. for 3d printing).</li>
+</ul>
+
+<h2>Version 2020-Jul-29</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-07-29_1400/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Allow local overrides for default input arguments for "<code>LoadSystem</code>" (see "<code>doc LoadSystem</code>").</li>
+</ul>
+
+<h2>Version 2020-Jun-18</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-06-18_1305/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>New firmware reducing the volume of the power fan.</li>
+</ul>
+
+<h2>Version 2020-Apr-29</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-06-02_1045/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Fix transfer errors for some specific low shim values.</li>
+<!-- <li> Error appeared for DAC values of 0xFFFF.</li> -->
+</ul>
+
+<h2>Version 2020-Apr-01</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-04-01_1435/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Add blocks with Euler angles for the three cardinal planes in examples with 2d measurements.</li>
+<li>The region of interest determined by "<code>plot_kSpaceAndImage</code>" now includes pixels/voxels that are exactly equal to "<code>RoICutOff</code>".</li>
+<li>The amplitudes returned by "<code>fit_exp</code>" are now increasing when evaluating a recovery experiment with "<code>CorrectPhaseOffset</code>" set to <code>true</code>.</li>
+<li>Fix some integer overflows when acquiring a very large number of data samples.</li>
+<!-- <li>Optionally, check (on startup) if USB packets from the controller are lost.</li> -->
+<li>Increase scheduling priority of the Matlab process.</li>
+<li>Fix errors when running sequences with minimal set of parameters.</li>
+<li>Fix issues using the dummy MRI device.</li>
+<li>Other stability and performance improvements.</li>
+</ul>
+
+<h2>Version 2020-Mar-23</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-03-23_1025/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Improve calculation of optimal acquisition duration in "<code>sequence_Flash</code>" if <code>Seq.AQSlice.HzPerPixMin = 0</code>.</li>
+<li>Add some initial documentation for input and output arguments for function "<code>sequence_Flash</code>".</li>
+<li>Other minor changes.</li>
+</ul>
+
+<h2>Version 2020-Mar-17</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-03-17_1300/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Use default amplitude for RF pulses in Demo_FID.</li>
+<li>Other minor changes.</li>
+</ul>
+
+<h2>Version 2020-Jan-28</h2>
+<!-- <a href="http://www.pure-devices.com/downloads/research/previous/2020-01-28_1535/Setup_openMatlab.exe" download>Download link</a> -->
+<ul>
+<li>Defining the timing between averages has changed.<br />Use "<code>Seq.averageRepetitionTime</code>" or "<code>Seq.averageBreak</code>" (see "<code>doc set_sequence</code>").</li>
+<li>Optionally, get raw data in single precission (<code>HW.RX.DataClassSingle</code>).</li>
+<li>The "<code>LoadMySystem</code>" script now executes in the folder where it is stored. Take this change into account when working with relative directories.</li>
+<li>Deploy more plotting functions as .m files (instead of protected .p files).</li>
+<li>"<code>sliceomatic</code>" now accepts setting <code>'[XYZ]Dir'</code> and <code>'[XYZ]Scale'</code>.</li>
+<li>Add new functions to programmatically get or add slices and iso-surfaces with "<code>sliceomatic</code>".</li>
+<li>Slices and iso-surfaces are retained for 3d images if possible when calling "<code>plot_kSpaceAndImage</code>" repeatedly.</li>
+<li>Various other fixes and improvements for "<code>sliceomatic</code>".</li>
+<li>Add options in "<code>sequence_Spin_Echo</code>" to permute the order in which k-space lines are acquired (e.g. <code>Seq.AQSlice(1).kLineOrderType = 'centerOut'</code>).</li>
+<li>Add more comments to code of "<code>sequence_Spin_Echo</code>".<br />Run "<code>doc sequence_Spin_Echo</code>" to see a documentation of input and output parameters.</li>
+<li>New functions "<code>save_Seq</code>" and "<code>load_Seq</code>" to save or load sequence structures with reduced duplicate data.</li>
+<li>Include "<code>%#function</code>" pragmas for pcoded files to allow users to deploy their code.</li>
+<li>"<code>get_T2</code>" now allows setting a range of estimated T2 values (see <code>Demo_T2.m</code>).</li>
+<li>Other stability and performance improvements.</li>
+<li>Add and improve documentation.</li>
+</ul>
+</body>
+
+</html>
