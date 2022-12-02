@@ -132,3 +132,6 @@ HW.MagnetShim([1,2,3]) = [0.000830558, -0.001237614, -0.000431689];  % 2022-12-0
 HW.MagnetShim([1,2,3]) = [0.000871679, -0.001278334, -0.000440312];  % 2022-12-02T11:10:49 by FindShim (T2* = 13.5 ms), x y z in T/m and B0 in T
 HW.MagnetShim([1,2,3]) = [0.000874439, -0.001295401, -0.000510641];  % 2022-12-02T11:14:41 by FindShim (T2* = 13.3 ms), x y z in T/m and B0 in T
 HW.MagnetShim([1,2,3]) = [0.000872414, -0.001315686, -0.000460757];  % 2022-12-02T11:22:41 by FindShim (T2* = 2.5 ms), x y z in T/m and B0 in T
+HW.MagnetShim([1,2,3]) = [0.001434916, -0.000903421, -0.000399291];  % 2022-12-02T14:44:21 by FindShim (T2* = 49.9 ms), x y z in T/m and B0 in T
+HW.MagnetShim([1,2,3]) = [0.001250703, -0.002351885, 0.000351890];  % 2022-12-02T14:47:19 by FindShim (T2* = 49.9 ms), x y z in T/m and B0 in T
+HW.MagnetShim([1,2,3]) = [0.001164939, -0.001875563, 0.002815609];  % 2022-12-02T14:50:31 by FindShim (T2* = 49.9 ms), x y z in T/m and B0 in T
