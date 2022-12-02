@@ -10,7 +10,7 @@
     %HW.fLarmor = 24371171.6266625;                              % override Larmor frequency
 
     % Parameters used for timing calculations
-    Seq.p90         = HW.tFlip90Def                % duration of TX pulse
+    Seq.p90         = 60e-6;%HW.tFlip90Def                % duration of TX pulse
     Seq.plotSeq     = [];                           % plot sequence off
 
     % Sequence parameters

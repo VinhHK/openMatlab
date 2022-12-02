@@ -8,7 +8,7 @@ HW.TX.ChannelDef = 2;         % Default TX Channel set to Tx2
 HW.TX.Uout2PaUout(2) = 50;       % 50x Amplification
 HW.TX.Max.PaUout(2) = 101;       % maximum PaUout(2)=200 V => 201 W
 
-HW.TX.Def.PaUout(2) = 5;        % default PaUout(2)=50 V => 100 W (10 Volt ici)
+HW.TX.Def.PaUout(2) = 10;        % default PaUout(2)=50 V => 100 W (10 Volt ici)
 
 HW.TX.Max.Amplitude = [20,20]*1e-3;   % maximum B1+ in T
 HW.TX.Def.Amplitude = [20,20]*1e-3;   % default B1+ in T

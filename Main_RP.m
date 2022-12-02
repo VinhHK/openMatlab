@@ -11,7 +11,7 @@ tcpipObj.Terminator = 'CR/LF';
 flushinput(tcpipObj);
 flushoutput(tcpipObj);
 %% Send a sine signal burst Tx 
-% 
+%
 % for k=1:100:50000;
 %     {
 fprintf(tcpipObj,'GEN:RST');
@@ -74,7 +74,9 @@ f_Tx = HW.fLarmor; %24372832;
 %pause(2)
 f_LO = f_Tx+2000;
 
-% %% Send channel 1
+Tx_Time = 66.49e-6;
+
+%% Send channel 1
             fprintf(tcpipObj,'SOUR1:FUNC SINE');
             fprintf(tcpipObj,'SOUR1:BURS:STAT BURST');      % Set type burst
             Tx_f = sprintf('SOUR1:FREQ:FIX %f',f_Tx);% Set frequency of output signal
@@ -82,7 +84,7 @@ f_LO = f_Tx+2000;
             Tx_Amp = sprintf('SOUR1:VOLT %f',0.22); % Amplitude value of Source 1 42 old 0.22 
             fprintf(tcpipObj, Tx_Amp);         % Set amplitude of output signal
             %writeline(app.rp,'SOUR1:VOLT:OFFS 0');
-            Tx_length = HW.tFlip90Def * 100/5e-6; 
+            Tx_length = Tx_Time * 100/5e-6; 
             %fprintf(tcpipObj,'SOUR1:BURS:STAT ON');      % Set burst mode to ON
             Burston = sprintf('SOUR1:BURS:NCYC %f',Tx_length); % Conversion to string for burst timing
             fprintf(tcpipObj, Burston);       % Set Tx_length to pulses of sine wave
@@ -139,9 +141,7 @@ while 1
      fprintf(tcpipObj,'DIG:PIN LED3,0');
 end
      fprintf(tcpipObj,'DIG:PIN LED3,0');
-     
 % Read & plot
-
 signal_str=query(tcpipObj,'ACQ:SOUR1:DATA?'); %read data from buffer
 % Convert values to numbers.% First character in string is “{“
 % and 2 latest are empty spaces and last is “}”.
@@ -160,7 +160,7 @@ FFT_abs = FFT_abs(100:floor(N/4));
 fgrid = fgrid(100:floor(N/4));
 
 fgrid = ((fgrid*1e6)/(f_LO))-60;
-%fgrid = (((fgrid+f_LO)-f_Tx)/ f_Tx )*1e6;
+%fgrid = (((fgrid-f_LO)+f_Tx)/ f_Tx )*1e6;
 
 % % % % % %
 % >> Fs=100;  % sample @ 100 Hz
@@ -198,7 +198,7 @@ ylabel('Voltage(V)')
 xlabel('Time(s)')
 %hold off
 figure
-plot(fgrid,FFT_abs);
+plot(fgrid,FFT_abs.^2);
 ylabel('power ($V/\sqrt(Hz)$)','Interpreter','latex')
 xlabel('Chemical Shift (ppm)')
 grid on
@@ -250,7 +250,6 @@ grid on
 %     xlabel(hax, 'Frequency in ppm'); % offset ppm
 %     ylabel(hax, sprintf('RMS voltage at coil in %cV', char(181)));
 %     grid(hax, 'on');
-
 %end
 %% Close connection with Red Pitaya
 fclose(tcpipObj);
