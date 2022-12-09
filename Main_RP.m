@@ -1,8 +1,7 @@
 %% Define Red Pitaya as TCP/IP object
-
-IP= '169.254.182.46'; %74.85';           % Input IP of your Red Pitaya...
+IP= '169.254.182.46'; %74.85'; % Input IP of your Red Pitaya...
 port = 5000;
-tcpipObj=tcpip(IP, port); %tcpip pas tcpclient avant
+tcpipObj=tcpip(IP, port); %tcpip not tcpclient before (This comment is due to the different matlab version that used another type code)
 tcpipObj.InputBufferSize = 16384*128;
 close all
 
