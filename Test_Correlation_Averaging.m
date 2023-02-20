@@ -1,0 +1,140 @@
+clc
+close all
+clear all
+
+%% Retrieve data
+[figures, path] = uigetfile('', '*.fig', 'Multiselect', 'on');
+for n = 1:length(figures)
+    Multi_Figs = [path, filesep,figures{n}];
+    Op = openfig(Multi_Figs,'invisible');
+    h = findobj(gca, 'Type', 'line');
+    S.data_x(:,n) = get(h, 'Xdata');
+    S.data_y(:,n) = get(h,'Ydata');
+end
+
+%% Data
+f_Tx = 24372832;
+f_LO = f_Tx+2000;
+
+Fs=15.258e3;    % Sampling frequency
+T = 1/Fs;   % Sampling period
+
+%% Find local maximum and cut the samples at this sample number
+% Find local maxima
+for i=1:n
+
+[psor,lsor] = findpeaks(S.data_y(:,i),'SortStr','descend'); %psor position lsor location
+findpeaks(S.data_y(:,i))
+text(lsor+.02,psor,num2str((1:numel(psor))'))
+First_Index = lsor(2); % Choix de quel pic referencer
+Max_Index=length(S.data_y(:,i)); %Derniere valeur de S.data_y(i)
+crop_length=Max_Index-First_Index; %Obligatoire pour éviter l'erreur d'allocation quand S.data_crop(:,i) laissé vide
+S.data_crop(1:crop_length,i) = S.data_y(First_Index:Max_Index-1,i);
+
+end
+
+%% Alignement and mean
+
+for i=1:n
+    if i==1
+        y1 = S.data_crop(:,1); %S(1).data(:,2);
+        %y1 = bandpass(y1,[200 3000],Fs);
+    else
+
+        [y1,y2] = alignsignals(y1,S.data_crop(:,i),Method="xcorr");
+
+        %         remettre dans une variable
+        %         resynchro avec une nouvelle
+        y1=y1(1:crop_length);
+        y2=y2(1:crop_length);
+        y_stack(:,1)=y1;
+        y_stack(:,i)=y2;
+    end
+end
+
+y_mean=mean(y_stack,2); %mean of each row = 2 , line =1
+
+%% Plot of averaging truncated FID
+Y_nbr=2;
+yz= y_stack(:,Y_nbr);
+Truncate_sample=1; %%%%% To change, sample number from which we want to truncate
+y_trc = y_mean(Truncate_sample:length(y_mean));
+y_test= yz(Truncate_sample:length(y_mean));
+Tz=1:1:length(y_trc);
+figure
+plot(Tz,y_trc,Tz,y_test)
+legend('Averaging of aligned and truncated FIDs');
+xlabel("Samples")
+ylabel("Amplitude")
+
+%% Control Figure
+%y1 = bandpass(y1,[300 3000],Fs);
+figure
+
+c_map= parula(n);
+for i=1:n
+    [y3,y4] = alignsignals(y1,S.data_crop(:,i),Method="xcorr");
+    plot(y4,'Color',c_map(i,:))
+    hold on
+    lgd_ctrl{i} = strcat(figures{i});
+end
+
+
+plot(y3)
+hold off
+legend(lgd_ctrl(1:n));
+xlabel("Control Samples")
+ylabel("Amplitude")
+hold off
+
+
+%% Hilbert transform & Variables
+
+L = length(y_trc); % Length of signal
+L_base = length(y3);
+t = S.data_x(:,1);  % Time vector
+fgrid=Fs/L*(-L/2:L/2-1);
+
+fid_base = y3(Truncate_sample:length(y1));
+fid = y_trc;
+fid_complex = hilbert(fid);
+fid_base_complex =  hilbert(fid_base);
+
+fgrid=fgrid'; %row to colum or inverse
+
+%% Phasing variable
+
+P0 = -1;
+P1 = -0.0016;
+
+P0_step = 1;
+P1_step = 0.001;
+
+%% Phasing figures & FFT
+Y_base_real = real(fftshift(fft(fid_base_complex)));
+
+figure
+for i=1:4
+    P1=P1+P1_step;
+
+    Y_real = real(fftshift(fft((fid_complex))).*exp(1i*P0).*exp(1i*P1*2*pi*fgrid));
+
+    %   Y_imag = imag(fftshift(fft((fid_complex))));
+    %   .*exp(j+2*pi*fgrid*P1);
+
+    plot(fgrid,Y_real);
+
+    lgd{i} = strcat('P0=',num2str(P0),'and P1=',num2str(P1)) ;
+
+    hold on
+end
+
+plot(fgrid,Y_base_real); lgd{5}=('File base');
+
+hold off
+fgrid = ((fgrid*1e6)/(f_LO))-60;
+
+grid on
+legend(lgd(1:length(lgd)));
+ylabel('Voltage(V)')
+xlabel('Chemical Shift (PPM)')

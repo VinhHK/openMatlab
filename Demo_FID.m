@@ -10,7 +10,7 @@
     %HW.fLarmor = 24371171.6266625;                              % override Larmor frequency
 
     % Parameters used for timing calculations
-    Seq.p90         = 4e-6;%HW.tFlip90Def                % duration of TX pulse
+    Seq.p90         = HW.tFlip90Def           % duration of TX pulse
     Seq.plotSeq     = [];                           % plot sequence off
 
     % Sequence parameters
@@ -23,9 +23,9 @@
     TX.Phase        = 0;                            % phase of rf-pulse
 
     % Acquisition parameters
-    AQ.Start        = 100e-6 + Seq.p90;             % acquisition start time
-    AQ.fSample      = 25e3;                         % sampling rate of AQ window
-    AQ.nSamples     = 1024;                         % number of samples in AQ window
+    AQ.Start        = 1e-6 + Seq.p90;             % acquisition start time old (100e-6)
+    AQ.fSample      = 25e3;                         % sampling rate of AQ window (25e3)
+    AQ.nSamples     = 1024;                         % number of samples in AQ window (1024)
     AQ.Frequency    = HW.fLarmor;                   % frequency of AQ window
     AQ.Phase        = 0;                            % phase of AQ window
     AQ.Gain         = HW.RX(1).Amplitude2Uin / 20e-3;  % maximum input voltage

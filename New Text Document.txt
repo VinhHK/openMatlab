@@ -1,0 +1,6 @@
+T = Pure device coil with proto
+O = Aucune idée mais solution de chunchesh
+P = Same as previously
+S = Student coil n21
+L = Student coil n21 apres mangé donc chauffe suplementaire? 
+N = Student coil n20, excellent resultat sur le PureDevice, meh sur la mienne

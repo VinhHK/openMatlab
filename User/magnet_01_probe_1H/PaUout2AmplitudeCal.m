@@ -27,3 +27,10 @@ HW.TX(1).PaUout2Amplitude = [0.001000, 26.771010]*1e-6;  % 2022-10-13T13:19:17 (
 HW.TX(1).PaUout2Amplitude = [0.001000, 26.793649]*1e-6;  % 2022-10-13T13:52:03 (tFlip90 = 21.914 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
 HW.TX(1).PaUout2Amplitude = [0.001000, 6.373747]*1e-6;  % 2022-10-13T14:22:09 (tFlip90 = 92.122 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
 HW.TX(1).PaUout2Amplitude = [0.001000, 26.557829]*1e-6;  % 2022-10-13T15:02:14 (tFlip90 = 22.109 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 19.820763]*1e-6;  % 2023-01-19T12:42:03 (tFlip90 = 29.624 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 21.820586]*1e-6;  % 2023-01-19T12:44:18 (tFlip90 = 26.909 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 27.431593]*1e-6;  % 2023-01-19T13:55:45 (tFlip90 = 21.405 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 26.173887]*1e-6;  % 2023-02-13T11:15:15 (tFlip90 = 22.433 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 28.816271]*1e-6;  % 2023-02-13T11:28:01 (tFlip90 = 20.376 µs @ 10.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 27.078088]*1e-6;  % 2023-02-13T11:31:09 (tFlip90 = 43.368 µs @ 5.000 V) from 1d Spin Echo by Find_PulseDuration
+HW.TX(1).PaUout2Amplitude = [0.001000, 19.717368]*1e-6;  % 2023-02-13T17:07:46 (tFlip90 = 59.558 µs @ 5.000 V) from 1d Spin Echo by Find_PulseDuration

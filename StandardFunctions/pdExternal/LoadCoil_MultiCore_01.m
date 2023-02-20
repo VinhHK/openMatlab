@@ -14,7 +14,7 @@ end
 switch HW.TX.CoilName
   case 'probe_H1'
     HW.GammaDef = HW.Gamma.H1;
-    HW.TX.PaUout2Amplitude = [45.917517, 36.955000] * 1e-6; % 2019-08-30T10:30:52 (tFlip90 = 34.560 µs @ 3.700 V) from 1d Spin Echo by Find_PulseDuration
+    HW.TX.PaUout2Amplitude = [30.917517, 36.955000] * 1e-6; % 2019-08-30T10:30:52 (tFlip90 = 34.560 µs @ 3.700 V) from 1d Spin Echo by Find_PulseDuration OLD [45.917517, 36.955000]
   case 'probe_H1Na23_H1'
     HW.GammaDef = HW.Gamma.H1;
     HW.TX.PaUout2Amplitude = [14.686260, 36.955000] * 1e-6; % H1-Pulslänge mit H1Na23 Probenkopf 108.056 µs - 2019-08-29T13:38:56 (tFlip90 = 108.056 µs @ 3.700 V) from 1d Spin Echo by Find_PulseDuration

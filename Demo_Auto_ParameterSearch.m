@@ -16,7 +16,7 @@ LoadSystem;                           % load system parameters
 minTime               = 1;            % minimum time in seconds since the last Find_Frequency; i.e. if set to 10, find freq will only be run, if 10 seconds have passed since the last search
 span                  = 400e3;        % searching span of frequency around fLarmor (HW.B0*HW.FindFrequencyGamma/2/pi) 400e3
 doplot                = 1;            % plot sequence and data
-tPulse90              = 66e-6;%[];           % duration of the 90 degrees pulse ([] uses HW.FindFrequencySweep.tPulse90 or HW.tFlip90)
+tPulse90              = [];           % duration of the 90 degrees pulse ([] uses HW.FindFrequencySweep.tPulse90 or HW.tFlip90)
 nMeasurements         = 21;           % number of measurements (TX and AQ trains)
 nSamples              = 100;          % number of samples in each measurement
 

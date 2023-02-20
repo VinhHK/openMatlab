@@ -1,5 +1,7 @@
 %% Define Red Pitaya as TCP/IP object
-
+%% OBSOLETE %%
+%% CAN ONLY BE USED WITH MATLAB VERSION 2021A %%
+%% ARCHIVE ONLY DO NOT USE %%
 close all
 
 IP= '169.254.182.46';           % Input IP of your Red Pitaya...
@@ -13,12 +15,12 @@ tcpipObj.Terminator = 'CR/LF';
 flushinput(tcpipObj);
 flushoutput(tcpipObj);
 
-% FID
+%% FID
 % Preparations
     LoadSystem;                                     % load system parameters
 
     [HW, mySave] = Find_Frequency_Sweep(HW, mySave, 10, [], 1);  % find magnet frequency
-     HW.fLarmor = 24373371.6266625;                              % override Larmor frequency 24.372857
+     HW.fLarmor = 24374235.950;                              % override Larmor frequency 24.372857
 
     % Parameters used for timing calculations
     Seq.p90         = HW.tFlip90Def;                % duration of TX pulse
@@ -154,7 +156,6 @@ fgrid = fs*(0:(N-1))/(N);
 
 %ppm_spectrum_received_ideal = frequency_spectrum_received / ppm_coefficient_ideal
 
-
 %% Plot
 figure
 plot(x_axis,signal_num)
@@ -167,7 +168,6 @@ plot(fgrid,FFT_abs);
 ylabel('power / ?')
 xlabel('frequencies')
 grid on
-
 
 % Plot results
 plot_data_1D(HW, data_1D);
