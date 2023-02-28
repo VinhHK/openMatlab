@@ -26,7 +26,7 @@ f_Tx = 24.3374e6; %HW.fLarmor; % 24.34 ?
 f_LO = f_Tx+1000; %Set Local Oscilator frequency to be used later
 
 Tx_Time = 17e-3; % Set the Tx length to be used later 7.8
-average_time = 1;
+average_nb = 1;
 
 %% Send channel 1 (Tx)
 writeline(RP_Client,'SOUR1:FUNC SINE'); %Type of signal
@@ -38,7 +38,7 @@ writeline(RP_Client, Tx_Amp);         % Set amplitude of output signal
 Tx_length = Tx_Time * 100/4.13e-6; % Set the lenght of Tx
 Burston = sprintf('SOUR1:BURS:NCYC %f',Tx_length); % Conversion to string for burst timing
 writeline(RP_Client, Burston);       % Set the burst length in the Red P memory
-% 
+%
 %     Tx_length2 = 2*Tx_Time * 100/4.13e-6; % Set the lenght of Tx
 %     Burston2 = sprintf('SOUR1:BURS:NCYC %f',Tx_length2); % Conversion to string for burst timing
 
@@ -60,7 +60,7 @@ writeline(RP_Client,'ACQ:SOUR1:GAIN LV'); %source and gain HV or LV
 
 % start acquisition
 
-for k=1:average_time
+for k=1:average_nb
 
     writeline(RP_Client,'ACQ:START');
     % After acquisition is started some time delay is needed in order to acquire fresh samples in to buffer
@@ -68,7 +68,7 @@ for k=1:average_time
     % length and smaling rate%
 
     % Start measurement7
-%    [Raw, SeqOut, data, data_1D] = set_sequence(HW, Seq, AQ, TX, Grad);
+    %    [Raw, SeqOut, data, data_1D] = set_sequence(HW, Seq, AQ, TX, Grad);
     writeline(RP_Client,'OUTPUT1:STATE ON'); % Set output Tx (Burst) to ON
     pause(0.65);
     writeline(RP_Client,'ACQ:TRIG NOW'); % Trigger the acquisition now
@@ -78,7 +78,7 @@ for k=1:average_time
     % Ctrl+C will stop code executing in MATLAB
     % writeline(RP_Client,'OUTPUT1:STATE OFF');
     % Set output Tx OFF if required / It seems no longer true
-    
+
     while 1
         trig_rsp=query(RP_Client,'ACQ:TRIG:STAT?');
         writeline(RP_Client,'DIG:PIN LED3,1');
@@ -119,13 +119,13 @@ for k=1:average_time
     Y_imag = imag(fftshift(fft((fid_complex))));
     Y_abs = abs(fftshift(fft((fid_complex))));
 
-    %% FID Plotting time !
-%     plot(t,real(fid_complex));
-%     hold on
-%     plot(t,imag(fid_complex));
-%     plot(t,abs(fid_complex));
-%     hold off
-%     legend('Real Part','Imaginary Part','Module Part');
+    % FID Plotting time !
+        plot(t,real(fid_complex));
+        hold on
+        plot(t,imag(fid_complex));
+        plot(t,abs(fid_complex));
+        hold off
+        legend('Real Part','Imaginary Part','Module Part');
 
     %% Old way to make the FFT, not to be used as it is not clearly verified
     %% FOR INFO and TEST ONLY, DO NOT USE
@@ -138,7 +138,7 @@ for k=1:average_time
 
 
     %% Frequency to ppm conversion
-   % fgrid = ((fgrid*1e6)/(f_LO))-60; %Convert frequencies to PPM with the required shift to be around 0
+    % fgrid = ((fgrid*1e6)/(f_LO))-60; %Convert frequencies to PPM with the required shift to be around 0
 
     %% Plot the signal
     h=figure; % First Figure

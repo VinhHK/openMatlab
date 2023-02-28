@@ -26,9 +26,9 @@ for i=1:n
 [psor,lsor] = findpeaks(S.data_y(:,i),'SortStr','descend'); %psor position lsor location
 findpeaks(S.data_y(:,i))
 text(lsor+.02,psor,num2str((1:numel(psor))'))
-First_Index = lsor(2); % Which peak to reference
-Max_Index=length(S.data_y(:,i)); %last value of S.data_y(i)
-crop_length=Max_Index-First_Index; %Mandatory to avoid allocation error of S.data_crop(:,i) being empty
+First_Index = lsor(2); % Which pe
+Max_Index=length(S.data_y(:,i)); %Derniere valeur de S.data_y(i)
+crop_length=Max_Index-First_Index; %Obligatoire pour éviter l'erreur d'allocation quand S.data_crop(:,i) laissé vide
 S.data_crop(1:crop_length,i) = S.data_y(First_Index:Max_Index-1,i);
 
 end
@@ -43,8 +43,8 @@ for i=1:n
 
         [y1,y2] = alignsignals(y1,S.data_crop(:,i),Method="xcorr");
 
-        %         put back into a variable
-        %         resynchro with a new one
+        %         remettre dans une variable
+        %         resynchro avec une nouvelle
         y1=y1(1:crop_length);
         y2=y2(1:crop_length);
         y_stack(:,1)=y1;
